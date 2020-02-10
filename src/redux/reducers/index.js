@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
-import drawing from './ChartReducer';
-import chart from './DrawingReducer';
+import drawing from './DrawingReducer';
+import chart from './ChartReducer';
 import pipeline from './PipelineReducer';
 import mnist from './MnistReducer';
 
