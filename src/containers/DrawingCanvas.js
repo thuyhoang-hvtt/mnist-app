@@ -2,18 +2,20 @@ import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { useSelector, useDispatch } from 'react-redux';
-import { addInput } from '../redux/actions/PipelineAction';
+import { addInput, displayBoundingBox } from '../redux/actions/PipelineAction';
 import { addStroke, addStrokePos, endStroke } from '../redux/actions/DrawingAction';
+import { RowZ } from '../components';
 
 const Canvas = styled.canvas`
     width: 300px;
     height: 300px;
-    border: #7f26bf 5px solid;
+    border-radius: 5px; 
+    
     display: block;
     touch-action: none;
 
     &:hover {
-        border-color: #b35cf2;
+        box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.3);
     }
 `;
 
@@ -96,7 +98,9 @@ function DrawingCanvas() {
         initContext();
         drawStrokes();
         if (isEndStroke) {
-            dispatch(addInput(ctx.getImageData(0, 0, 280, 280)));
+            console.log('Generate Image!')
+            // dispatch(addInput(ctx.getImageData(0, 0, 28, 28)));
+            dispatch(displayBoundingBox(ctx.getImageData(0, 0, 280, 280), canvas.current.toDataURL('image/png')));
         }
         // console.log('[Drawing] Did Update')
     }, [isEndStroke, isDrawing, ctx, dispatch])

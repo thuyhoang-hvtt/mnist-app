@@ -1,20 +1,25 @@
 export const PipelineAction = {
     INPUT: 'INPUT',
+    RESET: 'RESET',
     DISPLAY_BOUNDING_BOX: 'DISPLAY_BOUNDING_BOX',
     DISPLAY_CROPPED_BOX: 'DISPLAY_CROPPED_BOX',
     DISPLAY_CENTERED_BOX: 'DISPLAY_CENTERED_BOX',
     DISPLAY_NORMALIZED_BOX: 'DISPLAY_NORMALIZED_BOX'
 }
 
-export const addInput = image => ({
+export const addInput = imageData => ({
     type: PipelineAction.INPUT,
-    image
+    imageData
 })
 
-export const displayBoundingBox = (imageUrl, bounding) => ({
+export const resetInput = () => ({
+    type: PipelineAction.RESET
+})
+
+export const displayBoundingBox = (imageData, imageUrl) => ({
     type: PipelineAction.DISPLAY_BOUNDING_BOX,
-    imageUrl,
-    bounding
+    imageData,
+    imageUrl
 })
 
 export const displayCroppedBox = croppedUrl => ({
