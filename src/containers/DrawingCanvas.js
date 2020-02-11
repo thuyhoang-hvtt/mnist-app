@@ -1,10 +1,9 @@
-import React, { useEffect } from 'react'
-import PropTypes from 'prop-types'
-import styled from 'styled-components'
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect } from 'react';
+import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
-import { addInput, displayBoundingBox } from '../redux/actions/PipelineAction';
+import { addInput } from '../redux/actions/PipelineAction';
 import { addStroke, addStrokePos, endStroke } from '../redux/actions/DrawingAction';
-import { RowZ } from '../components';
 
 const Canvas = styled.canvas`
     width: 300px;
@@ -99,8 +98,9 @@ function DrawingCanvas() {
         drawStrokes();
         if (isEndStroke) {
             console.log('Generate Image!')
-            // dispatch(addInput(ctx.getImageData(0, 0, 28, 28)));
-            dispatch(displayBoundingBox(ctx.getImageData(0, 0, 280, 280), canvas.current.toDataURL('image/png')));
+            dispatch(addInput(ctx.getImageData(0, 0, 280, 280)));
+            // dispatch(displayBoundingBox(processingBounding(ctx.getImageData(0, 0, 280, 280))));
+
         }
         // console.log('[Drawing] Did Update')
     }, [isEndStroke, isDrawing, ctx, dispatch])

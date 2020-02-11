@@ -1,25 +1,23 @@
 import 'antd/dist/antd.css';
 import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
 import DrawingCanvas from './containers/DrawingCanvas';
 import { Layout, Typography } from 'antd'
 import { Icon32, Navbar, RowZ, ColZ } from './components';
 import Command from './containers/Command';
 import ImagePipeline from './containers/ImagePipeline';
+import Result from './components/Result';
 
 const { Footer } = Layout;
-const { Text, Title, Paragraph } = Typography;
+const { Title} = Typography;
 
 function App() {
-	// const mnist = useSelector(state => state.mnist);
 
-	// useEffect(() => {
-	//   console.log('App Did Mount')
-	//   console.log(mnist)
-	//   return () => {
-	//     console.log('App Will Unmount')
-	//   };
-	// }, [mnist])
+	useEffect(() => {
+	  console.log('App Did Mount')
+	  return () => {
+	    console.log('App Will Unmount')
+	  };
+	}, [])
 
 	return (
 		<Layout >
@@ -31,6 +29,7 @@ function App() {
 				<ColZ span={1}><Icon32 type="github"/></ColZ>
 				<ColZ span={1}><Icon32 type="youtube"/></ColZ>
 			</Navbar>
+			<Result result={10}/>
 			<RowZ type="flex" justify="center" align="middle">
 				<ColZ span={24}>
 					<DrawingCanvas/>

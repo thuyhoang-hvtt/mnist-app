@@ -16,10 +16,10 @@ export const resetInput = () => ({
     type: PipelineAction.RESET
 })
 
-export const displayBoundingBox = (imageData, imageUrl) => ({
+export const displayBoundingBox = ({imageUrl, bounding}) => ({
     type: PipelineAction.DISPLAY_BOUNDING_BOX,
-    imageData,
-    imageUrl
+    imageUrl,
+    bounding
 })
 
 export const displayCroppedBox = croppedUrl => ({

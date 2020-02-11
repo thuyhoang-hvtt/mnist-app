@@ -1,4 +1,4 @@
-export function computeBoundingBox(imageData) {
+function computeBoundingBox(imageData) {
     const box = {
         xmin: imageData.width,
         ymin: imageData.height,
@@ -21,4 +21,97 @@ export function computeBoundingBox(imageData) {
     }
 
     return box;
+}
+
+export function processingBounding(imageData) {
+    const bounding = computeBoundingBox(imageData);
+    const {xmin, xmax, ymin, ymax} = bounding;
+    const canvas = document.createElement('canvas');
+    canvas.width = 280;
+    canvas.height = 280;
+    const ctx = canvas.getContext('2d');
+    ctx.putImageData(imageData, 0, 0);
+    ctx.strokeStyle = 'red';
+    ctx.strokeRect( xmin, ymin, (xmax - xmin + 1), (ymax - ymin + 1));
+    // console.log(canvas.toDataURL())
+    return {
+        imageUrl: canvas.toDataURL(),
+        bounding,
+    };
+}
+
+
+export function processingCropped(imageData, bounding) {
+    const { xmin, ymin, xmax, ymax } = bounding;
+    const croppedCanvas = document.createElement('canvas');
+    croppedCanvas.width = 100;
+    croppedCanvas.height = 100;
+    const croppedCtx = croppedCanvas.getContext('2d');
+
+    const rectWidth = xmax - xmin + 1;
+    const rectHeight = ymax - ymin + 1;
+    const scalingFactor = 100 / Math.max(rectWidth, rectHeight);
+    const croppedRectSize = {
+        width: rectWidth * scalingFactor,
+        height: rectHeight * scalingFactor,
+    };
+
+    const canvas = document.createElement('canvas');
+    canvas.width = 280;
+    canvas.height = 280;
+    const ctx = canvas.getContext('2d');
+    ctx.putImageData(imageData, 0, 0);
+
+    
+    croppedCtx.drawImage(
+        canvas, 
+        xmin,
+        ymin,
+        rectWidth,
+        rectHeight,
+        0,
+        0,
+        croppedRectSize.width,
+        croppedRectSize.height
+    );
+    return {
+        croppedCanvas,
+        croppedRectSize
+    };
+}
+
+export function processingCentered(croppedCanvas, croppedRectSize) {
+    const centeredCanvas = document.createElement('canvas');
+    centeredCanvas.width = 140;
+    centeredCanvas.height = 140;
+    const centeredCtx = centeredCanvas.getContext('2d');
+
+    centeredCtx.drawImage(
+        croppedCanvas,
+        centeredCanvas.width / 2 - croppedRectSize.width / 2,
+        centeredCanvas.height / 2 - croppedRectSize.height / 2,
+    );
+
+    return centeredCanvas;
+}
+
+export function processingNormalized(centeredCanvas) {
+    const normalizedCanvas = document.createElement('canvas');
+    normalizedCanvas.width = 28;
+    normalizedCanvas.height = 28;
+    const normalizedCtx = normalizedCanvas.getContext('2d');
+
+    normalizedCtx.drawImage(
+        centeredCanvas,
+        0,
+        0,
+        centeredCanvas.width,
+        centeredCanvas.height,
+        0,
+        0,
+        normalizedCanvas.width,
+        normalizedCanvas.height,
+    );
+
+    return normalizedCanvas;
 }

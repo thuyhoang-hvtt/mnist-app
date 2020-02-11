@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { Button, Row, Col, Typography, Icon } from "antd";
 import React, { useEffect } from "react";
-import PropTypes from 'prop-types';
 
 const { Title } = Typography;
 
@@ -48,22 +47,14 @@ export const Box = ({ width, height, title, imageUrl, bounding }) => {
     let ctx = null
 
     const loadImage = () => {
-
+        // console.log(imageUrl)
         if (imageUrl) {
             const image = new Image();
             image.onload = () => {
                 ctx.drawImage(image, 0, 0, width, height);
-                if (bounding !== {}) {
-                    const { xmin, ymin, xmax, ymax } = bounding
-                    const scale = 2;
-                    ctx.strokeStyle = 'red';
-                    ctx.strokeRect( xmin / 2, ymin / 2, (xmax - xmin + 1) / 2, (ymax - ymin + 1) / 2);
-                }
             }
             image.src = imageUrl
-            console.log(image)
-            console.log(imageUrl)
-
+            // console.log(imageUrl)
         }
     }
 
@@ -73,7 +64,6 @@ export const Box = ({ width, height, title, imageUrl, bounding }) => {
 
     const initContext = () => {
         ctx = canvas.current.getContext('2d')
-
         clearCanvas();
         loadImage();
     }
@@ -84,6 +74,7 @@ export const Box = ({ width, height, title, imageUrl, bounding }) => {
         return () => {
             console.log('[Box] Will Unmount')
         };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [imageUrl])
 
 
@@ -111,6 +102,10 @@ export const Icon32 = styled(Icon)`
     &:hover {
         color: #b768d4;
     }
+`;
+
+export const TitleZ = styled(Title)`
+    margin-top: 0.5em;
 `;
 
 export const Navbar = styled(Row)`

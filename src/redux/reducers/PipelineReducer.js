@@ -1,11 +1,10 @@
 import { PipelineAction } from '../actions/PipelineAction'
-import { computeBoundingBox } from '../../utils/image-processing'
 
 
 const initState = {
-    imageData: {},
+    imageData: null,
     imageUrl: '',
-    bounding: {},
+    bounding: null,
     croppedUrl: '',
     centeredUrl: '',
     normalizedUrl: ''
@@ -14,12 +13,16 @@ const initState = {
 
 const pipeline = (state = initState, action) => {
     switch (action.type) {
+        case PipelineAction.INPUT:
+            return {
+                ...state,
+                imageData: action.imageData
+            }
         case PipelineAction.DISPLAY_BOUNDING_BOX:
             return {
                 ...state,
-                imageData: action.imageData,
                 imageUrl: action.imageUrl,
-                bounding: computeBoundingBox(action.imageData)
+                bounding: action.bounding
             }
         case PipelineAction.DISPLAY_CROPPED_BOX:
             return {

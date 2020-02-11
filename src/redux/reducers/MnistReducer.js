@@ -3,7 +3,9 @@ import { MnistAction } from '../actions/MnistAction'
 
 const initState = {
     status: MnistAction.INIT,
-    retrainStatus: MnistAction.INIT
+    retrainStatus: MnistAction.INIT,
+    imageUrl: '',
+    prediction: -1
 }
 
 const mnist = (state = initState, action) => {
@@ -23,7 +25,7 @@ const mnist = (state = initState, action) => {
         case MnistAction.PREDICT_REQUESTED:
             return {
                 ...state,
-                image: action.image,
+                imageUrl: action.imageUrl,
             }
         case MnistAction.PREDICT_SUCCEEDED:
             return {
