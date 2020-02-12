@@ -30,6 +30,7 @@ export function processingBounding(imageData) {
     canvas.width = 280;
     canvas.height = 280;
     const ctx = canvas.getContext('2d');
+    ctx.fillRect(0, 0, canvas.width, canvas.height)
     ctx.putImageData(imageData, 0, 0);
     ctx.strokeStyle = 'red';
     ctx.strokeRect( xmin, ymin, (xmax - xmin + 1), (ymax - ymin + 1));
@@ -47,7 +48,7 @@ export function processingCropped(imageData, bounding) {
     croppedCanvas.width = 100;
     croppedCanvas.height = 100;
     const croppedCtx = croppedCanvas.getContext('2d');
-
+    croppedCtx.fillRect(0, 0, croppedCanvas.width, croppedCanvas.height)
     const rectWidth = xmax - xmin + 1;
     const rectHeight = ymax - ymin + 1;
     const scalingFactor = 100 / Math.max(rectWidth, rectHeight);
@@ -60,6 +61,7 @@ export function processingCropped(imageData, bounding) {
     canvas.width = 280;
     canvas.height = 280;
     const ctx = canvas.getContext('2d');
+    ctx.fillRect(0, 0, canvas.width, canvas.height)
     ctx.putImageData(imageData, 0, 0);
 
     
@@ -85,7 +87,7 @@ export function processingCentered(croppedCanvas, croppedRectSize) {
     centeredCanvas.width = 140;
     centeredCanvas.height = 140;
     const centeredCtx = centeredCanvas.getContext('2d');
-
+    centeredCtx.fillRect(0, 0, centeredCanvas.width, centeredCanvas.height)
     centeredCtx.drawImage(
         croppedCanvas,
         centeredCanvas.width / 2 - croppedRectSize.width / 2,
@@ -100,7 +102,7 @@ export function processingNormalized(centeredCanvas) {
     normalizedCanvas.width = 28;
     normalizedCanvas.height = 28;
     const normalizedCtx = normalizedCanvas.getContext('2d');
-
+    normalizedCtx.fillRect(0, 0, normalizedCanvas.width, normalizedCanvas.height)
     normalizedCtx.drawImage(
         centeredCanvas,
         0,
