@@ -1,8 +1,15 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Digit Recognition Playground
+Made with ❤️ React, Redux, Flask, Keras-TF, etc.
 
-## Available Scripts
+## Front-end UI in React
 
-In the project directory, you can run:
+`git clone https://github.com/thuyhoang-hvtt/digit-recognition-app.git`
+`cd digit-recognition-app`
+`yarn && yarn start`
+
+## Back-end in Flask & Keras
+
+CNN Model in Keras & Tensorflow with accuracy of `99.75 %`.
 
 ### `yarn start`
 
