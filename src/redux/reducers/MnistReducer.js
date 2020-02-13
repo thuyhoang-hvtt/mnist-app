@@ -1,9 +1,11 @@
-import { MnistAction } from '../actions/MnistAction'
+import {
+    MnistAction
+} from '../actions/MnistAction'
 
 
 const initState = {
     status: MnistAction.INIT,
-    prediction: -1
+    prediction: {}
 }
 
 const mnist = (state = initState, action) => {
@@ -13,16 +15,16 @@ const mnist = (state = initState, action) => {
                 ...state,
                 status: MnistAction.PREDICT_REQUESTED,
             }
-        case MnistAction.PREDICT_SUCCEEDED:
-            return {
-                ...state,
-                status: MnistAction.PREDICT_SUCCEEDED,
-                prediction: action.prediction,
-            }
-        case MnistAction.RESET:
-            return initState
-        default:
-            return state
+            case MnistAction.PREDICT_SUCCEEDED:
+                return {
+                    ...state,
+                    status: MnistAction.PREDICT_SUCCEEDED,
+                        prediction: action.prediction,
+                }
+                case MnistAction.RESET:
+                    return initState
+                default:
+                    return state
     }
 }
 

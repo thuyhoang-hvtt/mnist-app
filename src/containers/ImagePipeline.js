@@ -48,7 +48,7 @@ export default function ImagePipeline() {
             const { centeredCanvas } = data
             const normalizedCanvas = processingNormalized(centeredCanvas)
             dispatch(displayNormalizedBox(normalizedCanvas.toDataURL()))
-            console.log(normalizedCanvas.toDataURL())
+            // console.log(normalizedCanvas.toDataURL())
         }
         return () => {
             console.log('NormalizedBox Will Unmount')

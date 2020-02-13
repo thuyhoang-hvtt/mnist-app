@@ -18,6 +18,7 @@ function Command() {
         dispatch(predictRequested())
         try {
             response = await API.post(`predict`, normalizedUrl);
+            // console.log(response)
             if (response.status === 200) {
                 dispatch(predictSucceeded(response.data))
             }

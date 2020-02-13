@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 import { addInput } from '../redux/actions/PipelineAction';
 import { addStroke, addStrokePos, endStroke } from '../redux/actions/DrawingAction';
+import { RowZ, ColZ } from '../components';
 
 const Canvas = styled.canvas`
     width: 300px;
@@ -107,17 +108,19 @@ function DrawingCanvas() {
 
 
     return (
-        <div touch-action="none">
-            <Canvas
-                ref={canvas}
-                onPointerDown={onMouseDown}
-                onPointerMove={onMouseMove}
-                onPointerUp={onStrokeEnd}
-                onMouseLeave={onStrokeEnd}
-                width={280}
-                height={280}
-            />
-        </div>
+        <RowZ type="flex" justify="center" align="center">
+            <ColZ span={24}>
+                <Canvas
+                    ref={canvas}
+                    onPointerDown={onMouseDown}
+                    onPointerMove={onMouseMove}
+                    onPointerUp={onStrokeEnd}
+                    onMouseLeave={onStrokeEnd}
+                    width={280}
+                    height={280}
+                />
+            </ColZ>
+        </RowZ>
     )
 }
 
