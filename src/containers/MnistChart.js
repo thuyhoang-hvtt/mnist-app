@@ -4,8 +4,6 @@ import { BarChart,
     XAxis,
     YAxis,
     CartesianGrid,
-    Tooltip,
-    Legend,
     Cell } from 'recharts';
 
 import { scaleOrdinal } from 'd3-scale';

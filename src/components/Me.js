@@ -2,7 +2,7 @@ import React from 'react'
 import { RowZ, ColZ, TitleZ } from '.'
 import { Avatar } from 'antd'
 import MyAvartar from '../images/me.jpg'
-import Text from 'antd/lib/typography/Text'
+
 
 function Me() {
     return (

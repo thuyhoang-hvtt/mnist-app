@@ -1,5 +1,6 @@
 import axios from 'axios';
 
 export default axios.create({
-    baseURL: `http://${window.location.hostname}:5000/`,
+    baseURL: `https://tf-digit.herokuapp.com/`,
+    // baseURL: `http://localhost:5000/`,
 })
